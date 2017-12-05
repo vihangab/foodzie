@@ -1,0 +1,51 @@
+buildscript {
+    ext {
+        springBootVersion = '1.5.9.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+plugins {
+	  id 'io.franzbecker.gradle-lombok' version '1.11'
+}
+ 
+lombok {
+    version = '1.16.18'
+    sha256 = ''
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+
+group = 'foodzie'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // spring-data-jpa
+    compile 'org.springframework.boot:spring-boot-starter-data-jpa'
+    // spring-web
+    compile 'org.springframework.boot:spring-boot-starter-web'
+    // spring-security
+    compile 'org.springframework.boot:spring-boot-starter-security'
+    compile 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.8.10'
+    // database connectors
+//    compile 'mysql:mysql-connector-java'
+    compile 'org.postgresql:postgresql'
+    // lombok
+//    compile 'org.projectlombok:lombok:1.16.18'
+    // Swagger
+    compile 'io.springfox:springfox-swagger2:2.7.0'
+    compile 'io.springfox:springfox-swagger-ui:2.7.0'
+}
