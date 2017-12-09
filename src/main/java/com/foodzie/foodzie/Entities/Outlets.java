@@ -10,11 +10,12 @@ public class Outlets {
     private Double rating;
     private int numOfUsersRated;
     private int numOfCriticsRated;
+    private Person owner;
 
     public Outlets() {
     }
 
-    public Outlets(Long id, String name, String address, String cuisine, Double rating, int numOfUsersRated, int numOfCriticsRated) {
+    public Outlets(Long id, String name, String address, String cuisine, Double rating, int numOfUsersRated, int numOfCriticsRated, Person owner) {
         this.Id = id;
         this.name = name;
         this.address = address;
@@ -22,6 +23,7 @@ public class Outlets {
         this.rating = rating;
         this.numOfUsersRated = numOfUsersRated;
         this.numOfCriticsRated = numOfCriticsRated;
+        this.owner = owner;
     }
 
     public Long getId() {
@@ -78,5 +80,13 @@ public class Outlets {
 
     public void setNumOfCriticsRated(int numOfCriticsRated) {
         this.numOfCriticsRated = numOfCriticsRated;
+    }
+
+    public Person getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Person owner) {
+        this.owner = owner;
     }
 }
