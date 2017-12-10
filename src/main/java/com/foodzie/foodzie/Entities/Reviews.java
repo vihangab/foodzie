@@ -5,13 +5,13 @@ public class Reviews {
     private Long Id;
     private Double rating;
     private String comment;
-    private Outlets outlet;
+    private Outlet outlet;
     private Person reviewer;
 
     public Reviews() {
     }
 
-    public Reviews(Long id, Double rating, String comment, Outlets outlet, Person reviewer) {
+    public Reviews(Long id, Double rating, String comment, Outlet outlet, Person reviewer) {
         Id = id;
         this.rating = rating;
         this.comment = comment;
@@ -43,11 +43,11 @@ public class Reviews {
         this.comment = comment;
     }
 
-    public Outlets getOutlet() {
+    public Outlet getOutlet() {
         return outlet;
     }
 
-    public void setOutlet(Outlets outlet) {
+    public void setOutlet(Outlet outlet) {
         this.outlet = outlet;
     }
 
