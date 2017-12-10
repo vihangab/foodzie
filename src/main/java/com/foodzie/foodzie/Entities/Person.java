@@ -1,15 +1,10 @@
 package com.foodzie.foodzie.Entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
-public class Person
-{
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+@Table(name = "person")
+public class Person {
     private int Id;
     private String name;
     private String email;
@@ -19,9 +14,22 @@ public class Person
     private String username;
     private String password;
 
-    public Person()
-    {
+    public Person() {
 
+    }
+
+    //Copy Constructor
+    public Person(Person person) {
+        if (person != null) {
+            this.Id = person.Id;
+            this.name = person.name;
+            this.email = person.email;
+            this.address = person.address;
+            this.dob = person.dob;
+            this.access = person.access;
+            this.username = person.username;
+            this.password = person.password;
+        }
     }
 
     public Person(int id, String name, String email, String address, String dob, int access, String username, String password) {
@@ -35,9 +43,8 @@ public class Person
         this.password = password;
     }
 
-
-
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public int getId() {
         return Id;
     }
@@ -101,4 +108,5 @@ public class Person
     public void setPassword(String password) {
         this.password = password;
     }
+
 }
