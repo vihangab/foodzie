@@ -12,25 +12,25 @@ import com.foodzie.foodzie.Entities.Person;
             if(person.getAccess() == 4)
             {
                 System.out.println("Created UserController");
-                PageController.setpgctrl(new UserController());
+                PageController.setPgctrl(new UserController());
                 page = "/user";
             }
-            else if(user.getAccess() == 3)
+            else if(person.getAccess() == 3)
             {
                 System.out.println("Created CriticController");
-                PageController.setpgctrl(new CriticController());
+                PageController.setPgctrl(new CriticController());
                 page = "/critic";
             }
-            else if(user.getAccess() == 2)
+            else if(person.getAccess() == 2)
             {
                 System.out.println("Created RestraurantOwnerController");
-                PageController.setpgctrl(new RestraurantOwnerController());
+                PageController.setPgctrl(new RestaurantOwnerController());
                 page = "/restraurant";
             }
-            else if(user.getAccess() == 1)
+            else if(person.getAccess() == 1)
             {
                 System.out.println("Created AdminController");
-                PageController.setpgctrl(new AdminController());
+                PageController.setPgctrl(new AdminController());
                 page = "/admin";
             }
             return page;
