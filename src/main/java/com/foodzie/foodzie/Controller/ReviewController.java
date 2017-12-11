@@ -38,7 +38,6 @@ public class ReviewController {
     public List<Review> getAllReviewsForOutlet(@RequestParam("outlet_id") Long outletId) {
         final Outlet outlet = new Outlet();
         outlet.setId(outletId);
-//        return reviewDAO.findAll(Example.of(new Review.Builder().outlet(outlet).build()));
         return reviewDAO.findByOutlet(outlet);
     }
 
@@ -46,7 +45,6 @@ public class ReviewController {
     public List<Review> getAllReviewsForPerson(@RequestParam("person_id") Integer personId) {
         final Person person = new Person();
         person.setId(personId);
-//        return reviewDAO.findAll(Example.of(new Review.Builder().outlet(outlet).build()));
         return reviewDAO.findByPerson(person);
     }
 

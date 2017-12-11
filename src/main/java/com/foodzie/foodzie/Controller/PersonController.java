@@ -3,6 +3,7 @@ package com.foodzie.foodzie.Controller;
 import com.foodzie.foodzie.DAO.PersonDAO;
 import com.foodzie.foodzie.Entities.Person;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;

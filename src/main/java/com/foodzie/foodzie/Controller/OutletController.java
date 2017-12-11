@@ -43,4 +43,5 @@ public class OutletController {
     public List<Outlet> searchOutlet(@RequestParam("keyword") String search){
         return outletDAO.findOutletByNameContainsOrAddressContainsOrCuisineContainsOrderByRating(search,search,search);
     }
+
 }
