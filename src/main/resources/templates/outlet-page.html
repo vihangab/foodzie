@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>All Outlets Page</title>
+</head>
+<body>
+<h1>Outlets</h1>
+
+<h th:utext="'Name: ' + ${name}"></h>
+<br/>
+<h th:utext="'Address: ' + ${address}"></h>
+<br/>
+<h th:utext="'Cuisine: ' + ${cuisine}"></h>
+<br/>
+<h th:utext="'Rating: ' + ${rating}"></h>
+<br/>
+<h1>Reviews</h1>
+
+<div>
+    <table border="1">
+        <tr>
+            <th>Comment</th>
+            <th>Rating</th>
+        </tr>
+        <tr th:each="review : ${reviews}">
+            <td th:utext="${review.comment}">...</td>
+            <td th:utext="${review.rating}">...</td>
+            <td><a th:href="'/review/id/' + ${review.id}">View</a></td>
+        </tr>
+    </table>
+</div>
+
+
+</body>
+</html>

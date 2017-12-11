@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>All Outlets Page</title>
+</head>
+<body>
+<h1>Outlets</h1>
+<div>
+    <table border="1">
+        <tr>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Cuisine</th>
+            <th>Rating</th>
+        </tr>
+        <tr th:each="outlet : ${outlets}">
+            <td th:utext="${outlet.name}">...</td>
+            <td th:utext="${outlet.address}">...</td>
+            <td th:utext="${outlet.cuisine}">...</td>
+            <td th:utext="${outlet.rating}">...</td>
+            <td><a th:href="'/outlet/' + ${outlet.id}">View</a></td>
+        </tr>
+    </table>
+</div>
+
+
+</body>
+</html>

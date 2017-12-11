@@ -9,6 +9,8 @@ import java.util.List;
 @Repository
 public interface PersonDAO extends JpaRepository<Person, Integer> {
 
+    Person person = new Person();
+
     public List<Person> findByPasswordIs(@Param("password") String password);
 
     public List<Person> findByNameIs(@Param("name") String name);
