@@ -7,10 +7,8 @@ import com.foodzie.foodzie.DAO.ReviewDAO;
 import com.foodzie.foodzie.Entities.Outlet;
 import com.foodzie.foodzie.Entities.Person;
 import com.foodzie.foodzie.Entities.Review;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -32,7 +30,7 @@ public class ReviewController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/review")
     public List<Review> getAllReviews() {
-        return reviewDAO.findAll();
+        return reviewDAO.findAll(new Sort(Sort.Direction.ASC, "rating"));
     }
 
 
@@ -62,4 +60,8 @@ public class ReviewController {
                 .build());
     }
 
+    @RequestMapping(method = RequestMethod.GET, value = "review/delete")
+    public void deleteReview(@RequestParam("delete_id") Long id) {
+        reviewDAO.delete(id);
+    }
 }

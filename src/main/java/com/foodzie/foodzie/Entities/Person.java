@@ -1,6 +1,7 @@
 package com.foodzie.foodzie.Entities;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "person")
@@ -32,8 +33,7 @@ public class Person {
         }
     }
 
-    public Person(int id, String name, String email, String address, String dob, int access, String username, String password) {
-        Id = id;
+    public Person(String name, String email, String address, String dob, int access, String username, String password) {
         this.name = name;
         this.email = email;
         this.address = address;

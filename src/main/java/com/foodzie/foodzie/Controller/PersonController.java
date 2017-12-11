@@ -20,24 +20,18 @@ public class PersonController {
     }
 
     @RequestMapping("/persons")
-    public List<Person> getPersons(){
+    public List<Person> getPersons() {
         List<Person> persons = new ArrayList<>();
         personDAO.findAll()
                 .forEach(persons::add);
         return persons;
     }
 
-    @RequestMapping(method = RequestMethod.GET,value = "/person/{stringId}")
-    public Person getPerson(@PathVariable String stringId){
+    @RequestMapping(method = RequestMethod.GET, value = "/person/{stringId}")
+    public Person getPerson(@PathVariable String stringId) {
         int Id = Integer.valueOf(stringId);
         return personDAO.findOne(Id);
     }
-
-    @RequestMapping(method = RequestMethod.POST,value = "/persons")
-    public void addPerson(@RequestBody Person person){
-        personDAO.saveAndFlush(person);
-    }
-
 
 
 }

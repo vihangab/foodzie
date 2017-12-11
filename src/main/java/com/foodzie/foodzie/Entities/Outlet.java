@@ -10,8 +10,6 @@ public class Outlet {
 
 
     private Long id;
-
-
     private String name;
     private String address;
     private String cuisine;

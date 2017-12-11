@@ -1,15 +1,17 @@
 package com.foodzie.foodzie.DAO;
 
 import com.foodzie.foodzie.Entities.Outlet;
-import com.foodzie.foodzie.Entities.Person;
-import com.foodzie.foodzie.Entities.Review;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public interface OutletDAO extends JpaRepository<Outlet, Long> {
 
     public Outlet findById(@Param("Id") Long Id);
+
+    public List<Outlet> findOutletByNameContainsOrAddressContainsOrCuisineContainsOrderByRating(@Param("name") String name, @Param("address") String address, @Param("cuisine") String cuisine);
 
 }

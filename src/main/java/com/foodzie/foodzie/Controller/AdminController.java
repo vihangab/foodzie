@@ -1,13 +1,14 @@
 package com.foodzie.foodzie.Controller;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 
-import com.foodzie.foodzie.Entities.Person;
+import com.foodzie.foodzie.DAO.PersonDAO;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
-public class AdminController extends PageController
-{
+@RestController
+public class AdminController {
+    @Autowired
+    private PersonDAO adminDAO;
 
 
 }
