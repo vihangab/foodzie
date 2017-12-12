@@ -33,6 +33,8 @@
 <br/>
 <br/>
 <a href="/review/add">Add Review</a>
+<br/>
+<a th:object="${outlet}" th:href="'/outlet/delete?delete_id=' + ${outlet.id}">Delete Outlet</a>
 
 </body>
 </html>

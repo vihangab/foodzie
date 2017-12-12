@@ -28,20 +28,22 @@ public class ReviewController {
     @RequestMapping(method = RequestMethod.GET, value = "/review/id/{id}")
     public String getReviewById(Model model, @PathVariable String id) {
         Review review = reviewDAO.findOne(Long.parseLong(id));
-        model.addAttribute("outlet_name",new String(review.getOutlet().getName()));
-        model.addAttribute("outlet_address",new String(review.getOutlet().getAddress()));
-        model.addAttribute("outlet_cuisine",new String(review.getOutlet().getCuisine()));
-        model.addAttribute("outlet_rating",new String(String.valueOf(review.getOutlet().getRating())));
-        model.addAttribute("comment",new String(review.getComment()));
-        model.addAttribute("review_rating",new String(String.valueOf(review.getRating())));
-        model.addAttribute("person_name",new String(review.getPerson().getName()));
-        model.addAttribute("review",review);
+        model.addAttribute("outlet_name", new String(review.getOutlet().getName()));
+        model.addAttribute("outlet_address", new String(review.getOutlet().getAddress()));
+        model.addAttribute("outlet_cuisine", new String(review.getOutlet().getCuisine()));
+        model.addAttribute("outlet_rating", new String(String.valueOf(review.getOutlet().getRating())));
+        model.addAttribute("comment", new String(review.getComment()));
+        model.addAttribute("review_rating", new String(String.valueOf(review.getRating())));
+        model.addAttribute("person_name", new String(review.getPerson().getName()));
+        model.addAttribute("review", review);
         return "review-page";
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/review")
-    public List<Review> getAllReviews() {
-        return reviewDAO.findAll(new Sort(Sort.Direction.DESC, "rating"));
+    @RequestMapping(method = RequestMethod.GET, value = "/review/all")
+    public String getAllReviews(Model model) {
+        List<Review> reviews = reviewDAO.findAll(new Sort(Sort.Direction.ASC, "person.name"));
+        model.addAttribute("reviews",reviews);
+        return "allreview-page";
     }
 
 
@@ -59,10 +61,10 @@ public class ReviewController {
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/review/add")
-    public String showAddReview(Model model){
+    public String showAddReview(Model model) {
         Outlet outlet = outletDAO.findById(outletDAO.outlet.getId());
-        model.addAttribute("outlet_name",new String(outlet.getName()));
-        model.addAttribute("outlet_id",new String(String.valueOf(outlet.getId())));
+        model.addAttribute("outlet_name", new String(outlet.getName()));
+        model.addAttribute("outlet_id", new String(String.valueOf(outlet.getId())));
         model.addAttribute(new Review());
         return "add-review-page";
     }
@@ -79,7 +81,8 @@ public class ReviewController {
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "review/delete")
-    public void deleteReview(@RequestParam("delete_id") Long id) {
+    public String deleteReview(Model model, @RequestParam("delete_id") Long id) {
         reviewDAO.delete(id);
+        return "redirect:/outlet/all";
     }
 }

@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Add Outlet</title>
+</head>
+<body>
+<h1>Add Outlet</h1>
+
+<form action="/outlet/add"
+      th:object="${outlet}" method="POST">
+    Name:
+    <input type="text" th:field="*{name}" />
+    <br/>
+    Address:
+    <input type="text" th:field="*{address}" />
+    <br/>
+    Cuisine:
+    <input type="text" th:field="*{cuisine}" />
+    <br/>
+    <input type="submit" value="Submit" />
+</form>
+
+<br/>
+
+</body>
+</html>

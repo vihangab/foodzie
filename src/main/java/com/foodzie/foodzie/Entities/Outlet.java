@@ -32,15 +32,10 @@ public class Outlet {
         }
     }
 
-    public Outlet(Long id, String name, String address, String cuisine, Double rating, int numOfUsersRated, int numOfCriticsRated, Person owner) {
-        this.id = id;
+    public Outlet(String name, String address, String cuisine) {
         this.name = name;
         this.address = address;
         this.cuisine = cuisine;
-        this.rating = rating;
-        this.numOfUsersRated = numOfUsersRated;
-        this.numOfCriticsRated = numOfCriticsRated;
-
     }
 
     @Column(unique = true)

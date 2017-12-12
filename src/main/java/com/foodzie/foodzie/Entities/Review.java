@@ -1,6 +1,7 @@
 package com.foodzie.foodzie.Entities;
 
 import com.sun.org.apache.regexp.internal.RE;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.util.List;
@@ -16,6 +17,7 @@ public class Review {
     private Outlet outlet;
 
     @OneToOne(cascade = CascadeType.ALL)
+    @Cascade(value = {org.hibernate.annotations.CascadeType.DELETE})
     public Person getPerson() {
         return person;
     }
@@ -25,6 +27,7 @@ public class Review {
     }
 
     @OneToOne(cascade = CascadeType.ALL)
+    @Cascade(value = {org.hibernate.annotations.CascadeType.DELETE})
     public Outlet getOutlet() {
         return outlet;
     }
@@ -124,4 +127,5 @@ public class Review {
         }
 
     }
+
 }

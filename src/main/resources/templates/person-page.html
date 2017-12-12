@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Person Page</title>
+</head>
+<body>
+<h1>User: </h1>
+
+<h th:object="${person}" th:utext="'Name: ' + ${name}"></h>
+<br/>
+<h th:object="${person}" th:utext="'Address: ' + ${address}"></h>
+<br/>
+<h th:object="${person}" th:utext="'Email: ' + ${email}"></h>
+<br/>
+<h th:object="${person}" th:utext="'Date of Birth: ' + ${dob}"></h>
+<br/>
+<h th:object="${person}" th:utext="'Access Level: ' + ${access}"></h>
+<br/>
+<h th:object="${person}" th:utext="'Username: ' + ${username}"></h>
+<br/>
+
+<div>
+    <table border="1">
+        <tr>
+            <th>Comment</th>
+            <th>Rating</th>
+        </tr>
+        <tr th:each="review : ${reviews}">
+            <td th:utext="${review.comment}">...</td>
+            <td th:utext="${review.rating}">...</td>
+            <td><a th:href="'/review/id/' + ${review.id}">View</a></td>
+        </tr>
+    </table>
+</div>
+
+<br/>
+<a th:object="${person}" th:href="'/person/delete?person_id=' + ${person.id}">Delete Person</a>
+
+
+</body>
+</html>
