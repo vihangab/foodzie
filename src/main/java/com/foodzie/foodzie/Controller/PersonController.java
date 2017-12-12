@@ -39,7 +39,13 @@ public class PersonController {
     public String getPerson(Model model,@PathVariable String stringId) {
         int Id = Integer.valueOf(stringId);
         Person person = personDAO.findOne(Id);
-        model.addAttribute(person);
+        model.addAttribute("name",new String(person.getName()));
+        model.addAttribute("address",new String(person.getAddress()));
+        model.addAttribute("dob",new String(person.getDob()));
+        model.addAttribute("username",new String(person.getUsername()));
+        model.addAttribute("email",new String(person.getEmail()));
+        model.addAttribute("access",new String(String.valueOf(person.getAccess())));
+        model.addAttribute("person",person);
         List<Review> reviews = reviewDAO.findByPerson(person);
         model.addAttribute("reviews",reviews);
         return "person-page";

@@ -7,17 +7,17 @@
 <body>
 <h1>User: </h1>
 
-<h th:object="${person}" th:utext="'Name: ' + ${name}"></h>
+<h th:utext="'Name: ' + ${name}"></h>
 <br/>
-<h th:object="${person}" th:utext="'Address: ' + ${address}"></h>
+<h th:utext="'Address: ' + ${address}"></h>
 <br/>
-<h th:object="${person}" th:utext="'Email: ' + ${email}"></h>
+<h th:utext="'Email: ' + ${email}"></h>
 <br/>
-<h th:object="${person}" th:utext="'Date of Birth: ' + ${dob}"></h>
+<h th:utext="'Date of Birth: ' + ${dob}"></h>
 <br/>
-<h th:object="${person}" th:utext="'Access Level: ' + ${access}"></h>
+<h th:utext="'Access Level: ' + ${access}"></h>
 <br/>
-<h th:object="${person}" th:utext="'Username: ' + ${username}"></h>
+<h th:utext="'Username: ' + ${username}"></h>
 <br/>
 
 <div>
@@ -26,7 +26,7 @@
             <th>Comment</th>
             <th>Rating</th>
         </tr>
-        <tr th:each="review : ${reviews}">
+        <tr th:if="${reviews}" th:each="review : ${reviews}">
             <td th:utext="${review.comment}">...</td>
             <td th:utext="${review.rating}">...</td>
             <td><a th:href="'/review/id/' + ${review.id}">View</a></td>
@@ -37,6 +37,10 @@
 <br/>
 <a th:object="${person}" th:href="'/person/delete?person_id=' + ${person.id}">Delete Person</a>
 
+
+<br/>
+<br/>
+<a href="/">Logout</a>
 
 </body>
 </html>

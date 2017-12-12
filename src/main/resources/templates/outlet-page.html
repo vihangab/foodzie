@@ -5,6 +5,10 @@
     <title>Outlet Page</title>
 </head>
 <body>
+
+<a href="/outlet/all">Go to All Outlets</a>
+<br/>
+<br/>
 <h1>Outlet:</h1>
 
 <h th:utext="'Name: ' + ${name}"></h>
@@ -36,5 +40,9 @@
 <br/>
 <a th:object="${outlet}" th:href="'/outlet/delete?delete_id=' + ${outlet.id}">Delete Outlet</a>
 
+
+<br/>
+<br/>
+<a href="/">Logout</a>
 </body>
 </html>
