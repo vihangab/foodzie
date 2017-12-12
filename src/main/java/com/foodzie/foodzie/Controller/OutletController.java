@@ -29,7 +29,8 @@ public class OutletController {
     @RequestMapping(method = RequestMethod.GET, value = "/outlet/{id}")
     public String getOutletById(Model model,@PathVariable String id) {
         Outlet outlet = outletDAO.findOne(Long.parseLong(id));
-        List<Review> reviews = reviewDAO.findByOutlet(outlet);
+        outletDAO.outlet.setId(outlet.getId());
+        List<Review> reviews = reviewDAO.findByOutletOrderByRatingDesc(outlet);
         model.addAttribute("name",new String(outlet.getName()));
         model.addAttribute("address",new String(outlet.getAddress()));
         model.addAttribute("cuisine",new String(outlet.getCuisine()));
@@ -41,7 +42,7 @@ public class OutletController {
 
     @RequestMapping(method = RequestMethod.GET, value = "outlet/all")
     public String getAllOutlets(Model model) {
-        List<Outlet> outlets = outletDAO.findAll(new Sort(Sort.Direction.ASC, "rating"));
+        List<Outlet> outlets = outletDAO.findAll(new Sort(Sort.Direction.DESC, "rating"));
         model.addAttribute("outlets", outlets);
         return "alloutlets-page";
     }
@@ -57,8 +58,10 @@ public class OutletController {
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "outlet/search")
-    public List<Outlet> searchOutlet(@RequestParam("keyword") String search) {
-        return outletDAO.findOutletByNameContainsOrAddressContainsOrCuisineContainsOrderByRating(search, search, search);
+    public String searchOutlet(Model model, @RequestParam("keyword") String search) {
+        List<Outlet> outlets = outletDAO.findOutletByNameContainsOrAddressContainsOrCuisineContainsOrderByRatingDesc(search, search, search);
+        model.addAttribute("outlets",outlets);
+        return "alloutlets-page";
     }
 
 }

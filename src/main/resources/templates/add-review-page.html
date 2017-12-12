@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Add Review</title>
+</head>
+<body>
+<h1>Add Review</h1>
+
+<h th:utext="'Adding review for: ' + ${outlet_name}"></h>
+<br/>
+<h th:utext="'Outlet ID: ' + ${outlet_id}"></h>
+<br/>
+<br/>
+
+<form action="/review/add"
+      th:object="${review}" method="POST">
+    Comment:
+    <input type="text" th:field="*{comment}" />
+    <br/>
+    Rating:
+    <input type="number" th:field="*{rating}" />
+    <br/>
+    Person ID:
+    <input type="number" th:field="*{person.id}" />
+    <br/>
+    Outlet ID:
+    <input type="number" th:field="*{outlet.id}" />
+    <br/>
+    <input type="submit" value="Submit" />
+</form>
+
+<br/>
+
+</body>
+</html>

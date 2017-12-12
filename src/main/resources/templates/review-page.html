@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Review Page</title>
+</head>
+<body>
+<h1>Review: </h1>
+
+<h th:utext="'Outlet Name: ' + ${outlet_name}"></h>
+<br/>
+<h th:utext="'Address: ' + ${outlet_address}"></h>
+<br/>
+<h th:utext="'Cuisine: ' + ${outlet_cuisine}"></h>
+<br/>
+<h th:utext="'Outlet Rating: ' + ${outlet_rating}"></h>
+<br/>
+<br/>
+<h th:utext="'Comment: ' + ${comment}"></h>
+<br/>
+<h th:utext="'Rating: ' + ${review_rating}"></h>
+<br/>
+<h th:utext="'Reviewer Name: ' + ${person_name}"></h>
+<br/>
+<br/>
+<a th:object="${review}" th:href="'/review/delete?delete_id=' + ${review.id}">Delete Review</a>
+
+
+</body>
+</html>

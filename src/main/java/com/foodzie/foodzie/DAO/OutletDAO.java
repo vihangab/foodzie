@@ -10,8 +10,10 @@ import java.util.List;
 @Repository
 public interface OutletDAO extends JpaRepository<Outlet, Long> {
 
+    Outlet outlet = new Outlet();
+
     public Outlet findById(@Param("Id") Long Id);
 
-    public List<Outlet> findOutletByNameContainsOrAddressContainsOrCuisineContainsOrderByRating(@Param("name") String name, @Param("address") String address, @Param("cuisine") String cuisine);
+    public List<Outlet> findOutletByNameContainsOrAddressContainsOrCuisineContainsOrderByRatingDesc(@Param("name") String name, @Param("address") String address, @Param("cuisine") String cuisine);
 
 }

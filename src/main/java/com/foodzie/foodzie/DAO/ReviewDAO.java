@@ -12,7 +12,7 @@ import java.util.List;
 @Repository
 public interface ReviewDAO extends JpaRepository<Review, Long> {
 
-    public List<Review> findByOutlet(@Param("outlet") Outlet outlet);
+    public List<Review> findByOutletOrderByRatingDesc(@Param("outlet") Outlet outlet);
 
     public List<Review> findByPerson(@Param("person")Person person);
 

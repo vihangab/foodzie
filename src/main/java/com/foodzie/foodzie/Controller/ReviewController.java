@@ -9,11 +9,13 @@ import com.foodzie.foodzie.Entities.Person;
 import com.foodzie.foodzie.Entities.Review;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
+@Controller
 public class ReviewController {
 
     @Autowired
@@ -24,21 +26,29 @@ public class ReviewController {
     private OutletDAO outletDAO;
 
     @RequestMapping(method = RequestMethod.GET, value = "/review/id/{id}")
-    public Review getReviewById(@PathVariable String id) {
-        return reviewDAO.findOne(Long.parseLong(id));
+    public String getReviewById(Model model, @PathVariable String id) {
+        Review review = reviewDAO.findOne(Long.parseLong(id));
+        model.addAttribute("outlet_name",new String(review.getOutlet().getName()));
+        model.addAttribute("outlet_address",new String(review.getOutlet().getAddress()));
+        model.addAttribute("outlet_cuisine",new String(review.getOutlet().getCuisine()));
+        model.addAttribute("outlet_rating",new String(String.valueOf(review.getOutlet().getRating())));
+        model.addAttribute("comment",new String(review.getComment()));
+        model.addAttribute("review_rating",new String(String.valueOf(review.getRating())));
+        model.addAttribute("person_name",new String(review.getPerson().getName()));
+        model.addAttribute("review",review);
+        return "review-page";
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/review")
     public List<Review> getAllReviews() {
-        return reviewDAO.findAll(new Sort(Sort.Direction.ASC, "rating"));
+        return reviewDAO.findAll(new Sort(Sort.Direction.DESC, "rating"));
     }
 
 
     @RequestMapping(method = RequestMethod.GET, value = "/review/find/outlet")
     public List<Review> getAllReviewsForOutlet(@RequestParam("outlet_id") Long outletId) {
-        final Outlet outlet = new Outlet();
-        outlet.setId(outletId);
-        return reviewDAO.findByOutlet(outlet);
+        final Outlet outlet = outletDAO.findOne(outletId);
+        return reviewDAO.findByOutletOrderByRatingDesc(outlet);
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/review/find/person")
@@ -48,14 +58,24 @@ public class ReviewController {
         return reviewDAO.findByPerson(person);
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/review")
-    public void createReview(@RequestBody Review review) {
+    @RequestMapping(method = RequestMethod.GET, value = "/review/add")
+    public String showAddReview(Model model){
+        Outlet outlet = outletDAO.findById(outletDAO.outlet.getId());
+        model.addAttribute("outlet_name",new String(outlet.getName()));
+        model.addAttribute("outlet_id",new String(String.valueOf(outlet.getId())));
+        model.addAttribute(new Review());
+        return "add-review-page";
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/review/add")
+    public String createReview(Model model, @ModelAttribute Review review) {
         final Review.Builder reviewBuilder = new Review.Builder(review);
         final Person person = personDAO.findByIdIs(review.getPerson().getId());
         final Outlet outlet = outletDAO.findById(review.getOutlet().getId());
         reviewDAO.saveAndFlush(reviewBuilder.person(person)
                 .outlet(outlet)
                 .build());
+        return "redirect:/outlet/" + String.valueOf(outlet.getId());
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "review/delete")
